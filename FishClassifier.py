@@ -20,12 +20,12 @@ assert len(physical_devices) > 0, "Not Enough GPUs available"
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
 #gpu_options.allow_growth=True
 
-PATH = os.path.join("dataset/")
+PATH = os.path.join("steuren/")
 
 train_dir = os.path.join(PATH, 'train')
 validation_dir = os.path.join(PATH, 'validation')
 
-batch_size = 128
+batch_size = 32
 epochs = 5
 IMG_HEIGHT = 224
 IMG_WIDTH = 224
@@ -48,11 +48,11 @@ val_data_gen = validation_image_generator.flow_from_directory(batch_size=batch_s
 speciesnrtrain = []
 speciesnrval = []
 
-basedir = "dataset/train/"
+basedir = "steuren/train/"
 species = os.listdir(basedir)
 
-traindir = "dataset/train/"
-valdir = "dataset/validation/"
+traindir = "steuren/train/"
+valdir = "steuren/validation/"
 
 for i in range(len(species)):
     if species[i] != ".DS_Store":
@@ -85,7 +85,7 @@ feature_extractor.trainable = False
 
 model = Sequential([
   feature_extractor,
-  Dense(64, activation='softmax')
+  Dense(3, activation='softmax')
 ])
 
 # Firstly create a batch for training and validation 
@@ -106,4 +106,4 @@ history = model.fit_generator(
 
 #model.save_weights('./checkpoints/my_checkpoint')
 
-model.save('saved_model/new_model2')
+model.save('saved_model/steuren')
