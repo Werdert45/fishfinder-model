@@ -9,7 +9,7 @@ tf_ic_server = ""
 flask_server = ""
 
 try:
-    tf_ic_server = subprocess.Popen(["tensorflow_model_server --model_base_path=/home/ian/tensorflow_projects/fishfinder/saved_model/main_model --rest_api_port=9000 --model_name=fishfinder"],
+    tf_ic_server = subprocess.Popen(["tensorflow_model_server --model_base_path=/home/ian/tensorflow_projects/fishfinder/saved_model/main_model --rest_api_port=9000 --model_name=fish_finder"],
                                     stdout=subprocess.DEVNULL,
                                     shell=True,
                                     preexec_fn=os.setsid)
